@@ -8,7 +8,7 @@ reference: [IOT malware in NTUST](https://www.youtube.com/watch?v=eUIsggR9Cuo&fe
 
 主要是藉由更改ELF，達到控制程式流程，執行注入shellcode，
 
-照著實作並做了一些修改， bypass PIE
+照著實作並做了一些修改， 增加 PIE bypass 
 
 ## Usage:
 
