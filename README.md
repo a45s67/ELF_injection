@@ -4,7 +4,7 @@
 
 reference: [IOT malware in NTUST](https://www.youtube.com/watch?v=eUIsggR9Cuo&feature=youtu.be)
 
-上完課後的動手做以及測試，
+上完課後的動手做以及測試記錄
 
 主要是藉由更改ELF，達到控制程式流程，執行注入shellcode，
 
@@ -42,7 +42,7 @@ strace
 
 [Relocation](https://refspecs.linuxbase.org/elf/gabi4+/ch4.reloc.html), 看到這個我才突然開竅大概知道這些macro是要幹嘛...
 
-### 基本觀念
+### 觀念整理
 
 首先要塞shellcode，就必須塞在可執行段 - LOAD(Program Section)的屁股後面，程式執行時"只會"將LOAD段mapping進memory(我的推測，  
 因為其他PS基本跟LOAD的範圍重疊，重複load這些重疊的東西感覺很怪)，總之有兩個LOAD，看flag可以知道xrw的情況。
