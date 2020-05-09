@@ -20,7 +20,7 @@ Hijack GOT table version:
 
 `./got_inject "path_to_victim_binary" "path_to_shellcode" "output_path"`
 
-Hijack GOT table version:
+Hijack plt jump to reslove version:
 
 `Haven't done `
 
