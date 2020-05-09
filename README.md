@@ -2,7 +2,7 @@
 
 ## Intorduction:
 
-reference: [IOT malware in NTUST](https://www.youtube.com/watch?v=eUIsggR9Cuo&feature=youtu.be)
+reference video: [IOT malware in NTUST](https://www.youtube.com/watch?v=eUIsggR9Cuo&feature=youtu.be)
 
 上完課後的動手做以及測試記錄
 
