@@ -14,15 +14,15 @@ reference: [IOT malware in NTUST](https://www.youtube.com/watch?v=eUIsggR9Cuo&fe
 
 Hijack entry point version:
 
-./inject "path_to_victim_binary" "path_to_shellcode" "output_path"
+`./inject "path_to_victim_binary" "path_to_shellcode" "output_path"`
 
 Hijack GOT table version:
 
-./got_inject "path_to_victim_binary" "path_to_shellcode" "output_path"
+`./got_inject "path_to_victim_binary" "path_to_shellcode" "output_path"`
 
 Hijack GOT table version:
 
-Haven't done 
+`Haven't done `
 
 ## 常用工具
 
