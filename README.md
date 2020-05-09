@@ -53,7 +53,9 @@ strace
 
 有哪些offset要推: Program Header, Section Header(可推可不推，就只是會找不到symbol string和gdb跑不動這樣)。  
 推完後 ehdr->e_entry改一下  
-然後shellcode後面加個跳回原本main的jmp就ok (課程中是塞絕對位置，感覺這邊可以用相對位置無視PIE，還沒試)
+然後shellcode後面加個跳回原本main的jmp就ok (課程中是塞絕對位置，感覺這邊可以用相對位置無視PIE，還沒試) 
+( 2020/5/10測試，相對位置可成功)
+
 
 ### 塞GOT的測試心得
 
